@@ -1,26 +1,31 @@
 //declare variables
 PImage dog;
 float scaleFactor = .1;
+PImage momo;
 
 
 void setup() {
-  size(800, 600);
+  size(480, 269);
 
   //initialize variables
   dog = loadImage("mayim.jpg");
+  momo = loadImage("momo.jpg");
 
 
   //turn off display of cursor
   noCursor();
+
+  noStroke();
 }
 
 void draw() {
-
-  scaleFactor = random(.01, .9);
-  tint(255, 128);
-  image(dog, random(width), random(height), dog.width*scaleFactor, dog.height*scaleFactor);
-  tint(0, 255, 0, 128);
-  image(dog, mouseX, mouseY, dog.width*.5, dog.height*.5);
+  //repeat this 50 times per frame with a for loop
+  for (int i = 0; i < 50; i++) {
+    int x = int(random(width));
+    int y = int(random(height));
+    fill(momo.get(x, y));
+    ellipse(x, y, 2, 2);
+  }
 }
 
 void keyPressed() {  //run this once each time I press a key
