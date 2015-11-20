@@ -2,7 +2,7 @@
 PImage dog;
 float scaleFactor = .1;
 PImage momo;
-
+int sz = 5;
 
 void setup() {
   size(480, 269);
@@ -19,21 +19,21 @@ void setup() {
 }
 
 void draw() {
-  //repeat this 50 times per frame with a for loop
-  for (int i = 0; i < 50; i++) {
-    int x = int(random(width));
-    int y = int(random(height));
-    fill(momo.get(x, y));
-    ellipse(x, y, 2, 2);
+  //create a grid of rectangles
+  for (int x = 0; x < width; x+= sz) {
+    for (int y = 0; y < height; y += sz) {
+      fill(momo.get(x, y));
+      rect(x, y, sz, sz);
+    }
   }
 }
 
 void keyPressed() {  //run this once each time I press a key
 
-  //if key is UP arrow, increase scale factor
+  //if key is UP arrow, increase sz
   if (keyCode == UP) {
-    scaleFactor += .1;
-  } else if (keyCode == DOWN && scaleFactor > .2) {  //otherwise, if key is down arrow AND scale factor is greater than .2, decrease scale factor
-    scaleFactor -= .1;
+    sz += 1;
+  } else if (keyCode == DOWN && sz > 2) {  //otherwise, if key is down arrow AND scale factor is greater than .2, decrease sz
+    sz -= 1;
   }
 }
