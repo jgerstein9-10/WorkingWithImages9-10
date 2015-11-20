@@ -1,42 +1,30 @@
 //declare variables
 PImage dog;
 float scaleFactor = .1;
-PVector loc, vel;
+
 
 void setup() {
   size(800, 600);
-  
+
   //initialize variables
   dog = loadImage("mayim.jpg");
-    loc = new PVector(width/2, height/2);
-  vel = PVector.random2D();
-  
+
+
   //turn off display of cursor
   noCursor();
 }
 
 void draw() {
-  background(0);
-  
-  //display image, with size scaled
-  image(dog, loc.x, loc.y, dog.width*scaleFactor, dog.height*scaleFactor);
-  
-  //move the image around
-  loc.add(vel);
-  if (loc.x > width) {
-    loc.x = 0;
-  } else if (loc.x < 0) {
-    loc.x = width;
-  }
-  if (loc.y > height) {
-    loc.y = 0;
-  } else if (loc.y < 0) {
-    loc.y = height;
-  }
+
+  scaleFactor = random(.01, .9);
+  tint(255, 128);
+  image(dog, random(width), random(height), dog.width*scaleFactor, dog.height*scaleFactor);
+  tint(0, 255, 0, 128);
+  image(dog, mouseX, mouseY, dog.width*.5, dog.height*.5);
 }
 
 void keyPressed() {  //run this once each time I press a key
-  
+
   //if key is UP arrow, increase scale factor
   if (keyCode == UP) {
     scaleFactor += .1;
